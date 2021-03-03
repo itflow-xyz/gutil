@@ -27,3 +27,17 @@ func TestIndexToColumn(t *testing.T) {
 		assert.Equal(t, c, IndexToColumn(i+52))
 	}
 }
+
+// TestColumnToIndex test important values for check
+// that ColumnToIndex function works correctly
+func TestColumnToIndex(t *testing.T) {
+	assert.Equal(t, 0, ColumnToIndex("A"))
+	assert.Equal(t, 1, ColumnToIndex("B"))
+	assert.Equal(t, 25, ColumnToIndex("Z"))
+	assert.Equal(t, 26, ColumnToIndex("AA"))
+	assert.Equal(t, 27, ColumnToIndex("AB"))
+	assert.Equal(t, 52, ColumnToIndex("BA"))
+	assert.Equal(t, 701, ColumnToIndex("ZZ"))
+	assert.Equal(t, 702, ColumnToIndex("AAA"))
+	assert.Equal(t, 703, ColumnToIndex("AAB"))
+}
