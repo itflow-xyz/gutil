@@ -9,6 +9,7 @@ import (
 
 // TestIndexToColumn test the IndexToColumn function
 func TestIndexToColumn(t *testing.T) {
+	assert.Empty(t, IndexToColumn(-1))
 	// test first 26 indexes
 	for i := 0; i < 26; i++ {
 		c := fmt.Sprintf("%c", i+'A')
@@ -31,6 +32,8 @@ func TestIndexToColumn(t *testing.T) {
 // TestColumnToIndex test important values for check
 // that ColumnToIndex function works correctly
 func TestColumnToIndex(t *testing.T) {
+	assert.Equal(t, -1, ColumnToIndex("1"))
+	assert.Equal(t, -1, ColumnToIndex("-"))
 	assert.Equal(t, 0, ColumnToIndex("A"))
 	assert.Equal(t, 1, ColumnToIndex("B"))
 	assert.Equal(t, 25, ColumnToIndex("Z"))

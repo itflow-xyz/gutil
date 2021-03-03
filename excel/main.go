@@ -2,6 +2,7 @@ package excel
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/bomaidea/gutil/strutil"
 )
@@ -13,7 +14,13 @@ import (
 // 26 -> AA
 // 27 -> AB
 // 52 -> BA
+// if the index is negative returns empty
 func IndexToColumn(i int) string {
+	// if the index is negative returns empty
+	if i < 0 {
+		return ""
+	}
+
 	s := ""
 	for i > 0 || len(s) == 0 {
 		y := i / ('Z' - 'A' + 1)
@@ -29,11 +36,20 @@ func IndexToColumn(i int) string {
 }
 
 // ColumnToIndex converts an excel column name to
-// his index
+// his index, if the name contains special chars
+// or numbers returns -1
 func ColumnToIndex(c string) int {
 	// reverse the column name (the smaller unit to
 	// be the first)
 	c = strutil.Reverse(c)
+	// set to upppercase
+	c = strings.ToUpper(c)
+
+	// check if the column name contains only letter
+	if !strutil.ContainsOnlyLetter(c) {
+		return -1
+	}
+
 	// create multiplicator at 1
 	m := 1
 	var i int
