@@ -58,3 +58,17 @@ func TestRowToIndex(t *testing.T) {
 	assert.Equal(t, 0, RowToIndex(1))
 	assert.Equal(t, 1, RowToIndex(2))
 }
+
+// TestIndexToAxis with error cases and sample cases
+func TestIndexToAxis(t *testing.T) {
+	// test error cases
+	assert.Empty(t, IndexToAxis(-1, 0))
+	assert.Empty(t, IndexToAxis(0, -1))
+	assert.Empty(t, IndexToAxis(-1, -1))
+
+	// test sample cases
+	assert.Equal(t, "A1", IndexToAxis(0, 0))
+	assert.Equal(t, "B2", IndexToAxis(1, 1))
+	assert.Equal(t, "Z26", IndexToAxis(25, 25))
+	assert.Equal(t, "AA27", IndexToAxis(26, 26))
+}

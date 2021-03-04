@@ -82,3 +82,15 @@ func IndexToRow(x int) int {
 func RowToIndex(x int) int {
 	return x - 1
 }
+
+// IndexToAxis converts 2 int coordinates to
+// excel coordinates
+func IndexToAxis(x, y int) string {
+	// check that both coordinates are positives
+	if x < 0 || y < 0 {
+		return ""
+	}
+
+	// convert x to column and y to row
+	return fmt.Sprintf("%s%d", IndexToColumn(x), IndexToRow(y))
+}
