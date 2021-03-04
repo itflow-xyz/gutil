@@ -44,3 +44,17 @@ func TestColumnToIndex(t *testing.T) {
 	assert.Equal(t, 702, ColumnToIndex("AAA"))
 	assert.Equal(t, 703, ColumnToIndex("AAB"))
 }
+
+// TestIndexToRow tests that IndexToRow function
+// works correctly
+func TestIndexToRow(t *testing.T) {
+	assert.Equal(t, 1, IndexToRow(0))
+	assert.Equal(t, 2, IndexToRow(1))
+}
+
+// TestRowToIndex tests that RowToIndex function
+// works correctly
+func TestRowToIndex(t *testing.T) {
+	assert.Equal(t, 0, RowToIndex(1))
+	assert.Equal(t, 1, RowToIndex(2))
+}

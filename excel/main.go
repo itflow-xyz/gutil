@@ -66,3 +66,19 @@ func ColumnToIndex(c string) int {
 	}
 	return i
 }
+
+// IndexToRow converts the generical Index numeration
+// to excel numeration
+// - generical numeration starts at 0
+// - excel numeration starts at 1
+func IndexToRow(x int) int {
+	return x + 1
+}
+
+// IndexToRow converts the excel numeration to
+// generical Index numeration
+// - generical numeration starts at 0
+// - excel numeration starts at 1
+func RowToIndex(x int) int {
+	return x - 1
+}
