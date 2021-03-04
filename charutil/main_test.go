@@ -6,11 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const lettersLowercase = "abcdefghijklmnopqrstuvwxyz"
-const lettersUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const numbers = "0123456789"
-const specialChars = `~!@#$%^&*()-_=+[{]}\|;:'",<.>/? `
-
 // testViaString is a test helper, it test the function
 // given as parameter [f] with all the runes of the
 // string [s], if the bool [e] is expected true from the
@@ -26,41 +21,41 @@ func testViaString(t *testing.T, e bool, f func(rune) bool, s string) {
 }
 
 func TestIsNumberOrLetter(t *testing.T) {
-	testViaString(t, true, IsNumberOrLetter, lettersUppercase)
-	testViaString(t, true, IsNumberOrLetter, lettersLowercase)
-	testViaString(t, true, IsNumberOrLetter, numbers)
+	testViaString(t, true, IsNumberOrLetter, LettersUppercase)
+	testViaString(t, true, IsNumberOrLetter, LettersLowercase)
+	testViaString(t, true, IsNumberOrLetter, Numbers)
 
-	testViaString(t, false, IsNumberOrLetter, specialChars)
+	testViaString(t, false, IsNumberOrLetter, SpecialChars)
 }
 
 func TestIsNumber(t *testing.T) {
-	testViaString(t, true, IsNumber, numbers)
+	testViaString(t, true, IsNumber, Numbers)
 
-	testViaString(t, false, IsNumber, lettersUppercase)
-	testViaString(t, false, IsNumber, lettersLowercase)
-	testViaString(t, false, IsNumber, specialChars)
+	testViaString(t, false, IsNumber, LettersUppercase)
+	testViaString(t, false, IsNumber, LettersLowercase)
+	testViaString(t, false, IsNumber, SpecialChars)
 }
 
 func TestIsLetter(t *testing.T) {
-	testViaString(t, true, IsLetter, lettersUppercase)
-	testViaString(t, true, IsLetter, lettersLowercase)
+	testViaString(t, true, IsLetter, LettersUppercase)
+	testViaString(t, true, IsLetter, LettersLowercase)
 
-	testViaString(t, false, IsLetter, numbers)
-	testViaString(t, false, IsLetter, specialChars)
+	testViaString(t, false, IsLetter, Numbers)
+	testViaString(t, false, IsLetter, SpecialChars)
 }
 
 func TestIsUppercaseLetter(t *testing.T) {
-	testViaString(t, true, IsUppercaseLetter, lettersUppercase)
+	testViaString(t, true, IsUppercaseLetter, LettersUppercase)
 
-	testViaString(t, false, IsUppercaseLetter, lettersLowercase)
-	testViaString(t, false, IsUppercaseLetter, numbers)
-	testViaString(t, false, IsUppercaseLetter, specialChars)
+	testViaString(t, false, IsUppercaseLetter, LettersLowercase)
+	testViaString(t, false, IsUppercaseLetter, Numbers)
+	testViaString(t, false, IsUppercaseLetter, SpecialChars)
 }
 
 func TestIsLowercaseLetter(t *testing.T) {
-	testViaString(t, true, IsLowercaseLetter, lettersLowercase)
+	testViaString(t, true, IsLowercaseLetter, LettersLowercase)
 
-	testViaString(t, false, IsLowercaseLetter, lettersUppercase)
-	testViaString(t, false, IsLowercaseLetter, numbers)
-	testViaString(t, false, IsLowercaseLetter, specialChars)
+	testViaString(t, false, IsLowercaseLetter, LettersUppercase)
+	testViaString(t, false, IsLowercaseLetter, Numbers)
+	testViaString(t, false, IsLowercaseLetter, SpecialChars)
 }

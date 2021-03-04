@@ -1,5 +1,19 @@
 package charutil
 
+// LettersLowercase list of all letters lowercase,
+// alphabeth order
+const LettersLowercase = "abcdefghijklmnopqrstuvwxyz"
+
+// LettersUppercase list of all letters uppercase,
+// alphabeth order
+const LettersUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+// Numbers list of all numbers
+const Numbers = "0123456789"
+
+// SpecialChars list of most used special chars
+const SpecialChars = `~!@#$%^&*()-_=+[{]}\|;:'",<.>/? `
+
 // IsNumberOrLetter returns true if the rune given as
 // parameter is a letter (upper or lower case) or a
 // a number, it could be in between this ranges: A-Z
