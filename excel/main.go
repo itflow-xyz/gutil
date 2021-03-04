@@ -2,8 +2,10 @@ package excel
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
+	"github.com/bomaidea/gutil/charutil"
 	"github.com/bomaidea/gutil/strutil"
 )
 
@@ -93,4 +95,34 @@ func IndexToAxis(x, y int) string {
 
 	// convert x to column and y to row
 	return fmt.Sprintf("%s%d", IndexToColumn(x), IndexToRow(y))
+}
+
+// AxisToIndex converts excel coordinates to
+// to generical indexes
+func AxisToIndex(s string) (int, int) {
+	splitPoint := -1
+	// find split point
+	for i, v := range s {
+		if charutil.IsNumber(v) {
+			splitPoint = i
+			break
+		}
+	}
+
+	// if splitPoint is minor or equal to 0 means
+	// that there is no letters or no numbers
+	if splitPoint <= 0 {
+		return -1, -1
+	}
+
+	// split x coordinates
+	x := s[:splitPoint]
+	// split y coordinates and check if is a valid number
+	y, err := strconv.Atoi(s[splitPoint:])
+	if err != nil {
+		return -1, -1
+	}
+
+	// convert values and return them
+	return ColumnToIndex(x), RowToIndex(y)
 }

@@ -72,3 +72,29 @@ func TestIndexToAxis(t *testing.T) {
 	assert.Equal(t, "Z26", IndexToAxis(25, 25))
 	assert.Equal(t, "AA27", IndexToAxis(26, 26))
 }
+
+func TestAxisToIndex(t *testing.T) {
+	x, y := AxisToIndex("A")
+	assert.Equal(t, -1, x)
+	assert.Equal(t, -1, y)
+
+	x, y = AxisToIndex("1")
+	assert.Equal(t, -1, x)
+	assert.Equal(t, -1, y)
+
+	x, y = AxisToIndex("1A")
+	assert.Equal(t, -1, x)
+	assert.Equal(t, -1, y)
+
+	x, y = AxisToIndex("A1")
+	assert.Equal(t, 0, x)
+	assert.Equal(t, 0, y)
+
+	x, y = AxisToIndex("Z26")
+	assert.Equal(t, 25, x)
+	assert.Equal(t, 25, y)
+
+	x, y = AxisToIndex("AA27")
+	assert.Equal(t, 26, x)
+	assert.Equal(t, 26, y)
+}
