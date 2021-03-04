@@ -1,11 +1,11 @@
 package charutil
 
-// IsSpecialChar returns true if the rune given as
-// parameter is not a special char, it could be in
-// between this ranges: A-Z a-z 0-9 or it can be a
-// space
-func IsSpecialChar(r rune) bool {
-	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') || r == '0'
+// IsNumberOrLetter returns true if the rune given as
+// parameter is a letter (upper or lower case) or a
+// a number, it could be in between this ranges: A-Z
+// a-z 0-9 or it can be a space
+func IsNumberOrLetter(r rune) bool {
+	return IsNumber(r) || IsLetter(r)
 }
 
 // IsNumber returns true if the rune given as
@@ -18,5 +18,17 @@ func IsNumber(r rune) bool {
 // parameter is a letter (could be upper or lower
 // case)
 func IsLetter(r rune) bool {
-	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z')
+	return IsUppercaseLetter(r) || IsLowercaseLetter(r)
+}
+
+// IsUppercaseLetter returns true if the rune
+// given as parameter is a upper case letter
+func IsUppercaseLetter(r rune) bool {
+	return r >= 'A' && r <= 'Z'
+}
+
+// IsLowercaseLetter returns true if the rune
+// given as parameter is lower case letter
+func IsLowercaseLetter(r rune) bool {
+	return r >= 'a' && r <= 'z'
 }

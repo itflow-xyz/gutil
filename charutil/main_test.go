@@ -6,48 +6,61 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TestIsSpecialChar tests that the func works correctly
-func TestIsSpecialChar(t *testing.T) {
-	// test true chars
-	s := "ABCXYZabcxyz012789"
-	for _, v := range s {
-		assert.True(t, IsSpecialChar(v))
-	}
+const lettersLowercase = "abcdefghijklmnopqrstuvwxyz"
+const lettersUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const numbers = "0123456789"
+const specialChars = `~!@#$%^&*()-_=+[{]}\|;:'",<.>/? `
 
-	// test special chars
-	s = "!@#$%^&*()_+}{:\\\"|?><~`"
+// testViaString is a test helper, it test the function
+// given as parameter [f] with all the runes of the
+// string [s], if the bool [e] is expected true from the
+// function otherways false
+func testViaString(t *testing.T, e bool, f func(rune) bool, s string) {
 	for _, v := range s {
-		assert.False(t, IsSpecialChar(v))
+		if e {
+			assert.True(t, f(v))
+		} else {
+			assert.False(t, f(v))
+		}
 	}
 }
 
-// TestIsNumber test that the function returns
-// the right values with the right paramters
-// values
-func TestIsNumber(t *testing.T) {
-	// test with numbers
-	s := "0123456789"
-	for _, v := range s {
-		assert.True(t, IsNumber(v))
-	}
+func TestIsNumberOrLetter(t *testing.T) {
+	testViaString(t, true, IsNumberOrLetter, lettersUppercase)
+	testViaString(t, true, IsNumberOrLetter, lettersLowercase)
+	testViaString(t, true, IsNumberOrLetter, numbers)
 
-	// test with letters and special chars
-	s = "ABCXYZabcxyz!@#$%^&*(()_+}{\\:;[]\"/.,><?"
-	for _, v := range s {
-		assert.False(t, IsNumber(v))
-	}
+	testViaString(t, false, IsNumberOrLetter, specialChars)
+}
+
+func TestIsNumber(t *testing.T) {
+	testViaString(t, true, IsNumber, numbers)
+
+	testViaString(t, false, IsNumber, lettersUppercase)
+	testViaString(t, false, IsNumber, lettersLowercase)
+	testViaString(t, false, IsNumber, specialChars)
 }
 
 func TestIsLetter(t *testing.T) {
-	// test with letters
-	s := "ABCXYZabcxyz"
-	for _, v := range s {
-		assert.True(t, IsLetter(v))
-	}
+	testViaString(t, true, IsLetter, lettersUppercase)
+	testViaString(t, true, IsLetter, lettersLowercase)
 
-	// test with numbers and special chars
-	s = "012789!#$%^&*()_+}{[]:;\"\\|/.,?><`~"
-	for _, v := range s {
-		assert.False(t, IsLetter(v))
-	}
+	testViaString(t, false, IsLetter, numbers)
+	testViaString(t, false, IsLetter, specialChars)
+}
+
+func TestIsUppercaseLetter(t *testing.T) {
+	testViaString(t, true, IsUppercaseLetter, lettersUppercase)
+
+	testViaString(t, false, IsUppercaseLetter, lettersLowercase)
+	testViaString(t, false, IsUppercaseLetter, numbers)
+	testViaString(t, false, IsUppercaseLetter, specialChars)
+}
+
+func TestIsLowercaseLetter(t *testing.T) {
+	testViaString(t, true, IsLowercaseLetter, lettersLowercase)
+
+	testViaString(t, false, IsLowercaseLetter, lettersUppercase)
+	testViaString(t, false, IsLowercaseLetter, numbers)
+	testViaString(t, false, IsLowercaseLetter, specialChars)
 }
