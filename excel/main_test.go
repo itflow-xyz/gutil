@@ -98,3 +98,14 @@ func TestAxisToIndex(t *testing.T) {
 	assert.Equal(t, 26, x)
 	assert.Equal(t, 26, y)
 }
+
+func TestRowIndexToAxis(t *testing.T) {
+	axis := RowIndexToAxis("A", 0)
+	assert.Equal(t, "A1", axis)
+
+	axis = RowIndexToAxis("B", 1)
+	assert.Equal(t, "B2", axis)
+
+	axis = RowIndexToAxis("AA", 20)
+	assert.Equal(t, "AA21", axis)
+}

@@ -126,3 +126,14 @@ func AxisToIndex(s string) (int, int) {
 	// convert values and return them
 	return ColumnToIndex(x), RowToIndex(y)
 }
+
+// RowIndexToAxis converts a row index and a column
+// (already given with excel coordinates)
+func RowIndexToAxis(x string, y int) string {
+	// check that both coordinates are positives
+	if ColumnToIndex(x) < 0 && y < 0 {
+		return ""
+	}
+
+	return fmt.Sprintf("%s%d", x, IndexToRow(y))
+}
