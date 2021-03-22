@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -108,4 +109,17 @@ func TestRowIndexToAxis(t *testing.T) {
 
 	axis = RowIndexToAxis("AA", 20)
 	assert.Equal(t, "AA21", axis)
+}
+
+func TestOpenOrCreateSheet(t *testing.T) {
+	xlsx := excelize.NewFile()
+
+	sheet := "Sheet2"
+	index := xlsx.NewSheet(sheet)
+	assert.Equal(t, index, OpenOrCreateSheet(xlsx, sheet))
+	assert.Equal(t, index, xlsx.GetActiveSheetIndex())
+
+	sheet = "Sheet3"
+	index = OpenOrCreateSheet(xlsx, sheet)
+	assert.Equal(t, index, xlsx.GetActiveSheetIndex())
 }

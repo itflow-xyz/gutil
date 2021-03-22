@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/bomaidea/gutil/charutil"
 	"github.com/bomaidea/gutil/strutil"
 )
@@ -136,4 +137,26 @@ func RowIndexToAxis(x string, y int) string {
 	}
 
 	return fmt.Sprintf("%s%d", x, IndexToRow(y))
+}
+
+// OpenOrCreateSheet checks if the excel sheet exists
+// if exists set it as active otherways it creates it
+// and then set it as active
+func OpenOrCreateSheet(xlsx *excelize.File, s string) int {
+	// check if the excel sheet exist
+	index := -1
+	for i, n := range xlsx.GetSheetMap() {
+		if s == n {
+			index = i
+		}
+	}
+
+	// if excel sheet does not exists create it
+	if index == -1 {
+		index = xlsx.NewSheet(s)
+	}
+	// set active sheet, existing or new one
+	xlsx.SetActiveSheet(index)
+
+	return index
 }
