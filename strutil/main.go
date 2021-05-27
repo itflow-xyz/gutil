@@ -25,3 +25,18 @@ func ContainsOnlyLetter(s string) bool {
 	}
 	return true
 }
+
+func RemoveSliceDuplicates(s []string) []string {
+	check := make(map[string]int)
+	res := make([]string, 0)
+
+	for _, v := range s {
+		check[v] = 1
+	}
+
+	for l, _ := range check {
+		res = append(res, l)
+	}
+
+	return res
+}

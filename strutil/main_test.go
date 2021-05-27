@@ -20,3 +20,12 @@ func TestContainsOnlyLetter(t *testing.T) {
 	assert.False(t, ContainsOnlyLetter(charutil.Numbers))
 	assert.False(t, ContainsOnlyLetter(charutil.SpecialChars))
 }
+
+func TestRemoveSliceDuplicates(t *testing.T) {
+	s := []string{"aaa", "bbb", "ccc"}
+	assert.Equal(t, s, RemoveSliceDuplicates(s))
+
+	s = []string{"aaa", "bbb", "aaa"}
+	e := []string{"aaa", "bbb"}
+	assert.Equal(t, e, RemoveSliceDuplicates(s))
+}
