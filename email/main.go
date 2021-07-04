@@ -34,7 +34,7 @@ func buildEmail(to, from, object, content string) []byte {
 	return []byte(fmt.Sprintf(to, from, object, content))
 }
 
-func SendEmailTSL(dest, subject, body string) error {
+func SendEmailTLS(dest, subject, body string) error {
 	from := mail.Address{Name: "", Address: smtpUsername}
 	to := mail.Address{Name: "", Address: dest}
 
