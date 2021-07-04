@@ -13,7 +13,7 @@ var (
 	smtpPassword = os.Getenv("SMTP_PASSWORD")
 )
 
-func sendEmail(dest, object, content string) error {
+func SendEmail(dest, object, content string) error {
 	auth := smtp.PlainAuth("", smtpUsername, smtpPassword, smtpServer)
 
 	to := []string{dest}
