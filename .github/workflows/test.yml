@@ -22,11 +22,3 @@ jobs:
 
     - name: Running Tests
       run: go test -v ./...
-
-    - name: Send notification to telegram bot 
-      uses: yanzay/notify-telegram@v0.1.0
-      if: always()
-      with:
-        chat: ${{ secrets.telegram_chat }} # user id or channel name secret
-        token: ${{ secrets.telegram_token }} # token secret
-        status: ${{ job.status }} # do not modify this line
