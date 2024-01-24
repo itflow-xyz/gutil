@@ -1,7 +1,7 @@
 package strutil
 
 import (
-	"github.com/bomaidea/gutil/charutil"
+	"github.com/itflow-xyz/gutil/charutil"
 )
 
 // Reverse reverts a string ASD -> DSA, abc -> cba

@@ -3,7 +3,7 @@ package strutil
 import (
 	"testing"
 
-	"github.com/bomaidea/gutil/charutil"
+	"github.com/itflow-xyz/gutil/charutil"
 	"github.com/stretchr/testify/assert"
 )
 

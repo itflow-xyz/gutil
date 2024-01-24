@@ -1,4 +1,4 @@
-module github.com/bomaidea/gutil
+module github.com/itflow-xyz/gutil
 
 go 1.16
 

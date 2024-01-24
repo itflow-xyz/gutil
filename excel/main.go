@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/360EntSecGroup-Skylar/excelize"
-	"github.com/bomaidea/gutil/charutil"
-	"github.com/bomaidea/gutil/strutil"
+	"github.com/itflow-xyz/gutil/charutil"
+	"github.com/itflow-xyz/gutil/strutil"
 )
 
 // IndexToColumn converts an index (starting at 0)

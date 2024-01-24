@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 
-	"github.com/bomaidea/gutil/charutil"
+	"github.com/itflow-xyz/gutil/charutil"
 )
 
 // GenerateRandomBytes returns securely generated random bytes.
